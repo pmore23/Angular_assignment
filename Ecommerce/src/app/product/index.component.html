@@ -1,0 +1,34 @@
+<div class="wrapper">
+        <div class="content">
+            <!-- content here -->
+            <div class="product-grid product-grid--flexbox">
+                <div class="product-grid__wrapper">
+                    <!-- Product list start here -->
+                    
+                    <!-- Single product -->
+                    <div class="product-grid__product-wrapper" *ngFor="let product of products">
+                        <div class="product-grid__product">
+                            <div class="product-grid__img-wrapper">			
+                                <img src="{{product.product_image}}" alt="Product Imgage" class="product-grid__img" />
+                            </div>
+                            <span class="product-grid__title">{{product.name}}</span>
+                            <span class="product-grid__price">Rs - {{product.price}}</span>
+                            <div class="product-grid__extend-wrapper">
+                                <div class="product-grid__extend">
+                                    <p class="product-grid__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis velit itaque odit.</p>
+                                    <a [routerLink]="['/cart', { id:product.id }]"><span class="product-grid__btn product-grid__add-to-cart"><i class="fa fa-cart-arrow-down"></i> Add to cart</span></a>				
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end Single product -->
+    
+                    
+    
+                    
+    
+                    
+                </div>		
+            </div>
+        </div>
+    </div>
