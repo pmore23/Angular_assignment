@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'Ecommerce Application';
+  @Output() public sidenavToggle = new EventEmitter();
+ 
+  constructor() { }
   ngOnInit() {
   }
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
+  }
+
 }

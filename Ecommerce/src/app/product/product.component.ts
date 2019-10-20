@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Product } from '../entities/product.entity';
 import { ProductService } from '../services/product.service';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
 	templateUrl: 'index.component.html'
