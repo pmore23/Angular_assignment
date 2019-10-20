@@ -6,6 +6,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProductComponent } from './product/product.component';
 import { OrderHistoryComponent } from './order/orderHistory.component';
 import { ProductService } from './services/product.service';
+import { cartItemService } from './services/cartItem.service';
 import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
@@ -26,7 +27,8 @@ import {MaterialModule} from './material.module';
     MaterialModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    cartItemService
   ],
   bootstrap: [AppComponent]
 })

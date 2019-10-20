@@ -1,8 +1,6 @@
 import { Product } from './product.entity';
 
-export class Item {
-
+export interface Item {
     product: Product;
     quantity: number;
-
-}
+  }

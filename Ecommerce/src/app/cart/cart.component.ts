@@ -4,87 +4,90 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../entities/product.entity';
 import { Item } from '../entities/item.entity';
 import { ProductService } from '../services/product.service';
+import { cartItemService } from '../services/cartItem.service';
 
 @Component({
-	templateUrl: 'index.component.html'
+	templateUrl: 'cart.component.html',
+	styleUrls: ['./cart.component.scss']
 })
 
 export class CartComponent implements OnInit {
 
-	private items: Item[] = [];
-	private total: number = 0;
+	private cartItems: any = [];
+	private totalItems: number = 0;
+	private totalAmount: number = 0;
+	private emptyCartErrorMsg: boolean = false;
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
-		private productService: ProductService
+		private productService: ProductService,
+		private cartItemService: cartItemService
 	) { }
 
 	ngOnInit() {
-		this.activatedRoute.params.subscribe(params => {
-			var id = params['id'];
-			if (id) {
-				var item: Item = {
-					product: this.productService.find(id),
-					quantity: 1
-				};
-				if (localStorage.getItem('cart') == null) {
-					let cart: any = [];
-					cart.push(JSON.stringify(item));
-					localStorage.setItem('cart', JSON.stringify(cart));
-				} else {
-					let cart: any = JSON.parse(localStorage.getItem('cart'));
-					let index: number = -1;
-					for (var i = 0; i < cart.length; i++) {
-						let item: Item = JSON.parse(cart[i]);
-						if (item.product.id == id) {
-							index = i;
-							break;
-						}
-					}
-					if (index == -1) {
-						cart.push(JSON.stringify(item));
-						localStorage.setItem('cart', JSON.stringify(cart));
-					} else {
-						let item: Item = JSON.parse(cart[index]);
-						item.quantity += 1;
-						cart[index] = JSON.stringify(item);
-						localStorage.setItem("cart", JSON.stringify(cart));
-					}
-				}
-				this.loadCart();
-			} else {
-				this.loadCart();
-			}
-		});
-	}
-
-	loadCart(): void {
-		this.total = 0;
-		this.items = [];
-		let cart = JSON.parse(localStorage.getItem('cart'));
-		for (var i = 0; i < cart.length; i++) {
-			let item = JSON.parse(cart[i]);
-			this.items.push({
-				product: item.product,
-				quantity: item.quantity
-			});
-			this.total += item.product.price * item.quantity;
-		}
-	}
-
-	remove(id: string): void {
-		let cart: any = JSON.parse(localStorage.getItem('cart'));
-		let index: number = -1;
-		for (var i = 0; i < cart.length; i++) {
-			let item: Item = JSON.parse(cart[i]);
-			if (item.product.id == id) {
-				cart.splice(i, 1);
-				break;
-			}
-		}
-		localStorage.setItem("cart", JSON.stringify(cart));
+		this.cartItems = this.cartItemService.getCartItems();
 		this.loadCart();
 	}
 
+	loadCart(): void {
+		this.totalItems = this.cartItems.length;
+		if(this.cartItems.length !== 0) {
+			for (var i = 0; i < this.cartItems.length; i++) {
+				if(this.cartItems[i].quantity === 0) {
+					this.cartItems.splice(i, 1);
+				}
+			}
+			this.totalAmount = this.calculateTotalAmountForCart();
+		} else {
+			this.emptyCartErrorMsg = true;
+		}
+	}
+
+	calculateTotalAmountForCart(): number {
+		let cartTotalAmount: number = 0;
+		for (var i = 0; i < this.cartItems.length; i++) {
+			cartTotalAmount += this.cartItems[i].price * this.cartItems[i].quantity;
+		}
+		return cartTotalAmount;
+	}
+
+	remove(id: string): void {
+		for (var i = 0; i < this.cartItems.length; i++) {
+			let item = this.cartItems[i];
+			if (item.id == id) {
+				this.cartItems.splice(i, 1);
+				break;
+			}
+		}
+		this.totalAmount = this.calculateTotalAmountForCart();
+		this.loadCart();
+	}
+
+	increaseQuantity(id: string): void {
+		for (var i = 0; i < this.cartItems.length; i++) {
+			if (this.cartItems[i].id == id) {
+				this.cartItems[i].quantity++;
+				break;
+			}
+		}
+		this.totalAmount = this.calculateTotalAmountForCart();
+		this.loadCart();
+	}
+
+	decreaseQuantity(id: string): void {
+		for (var i = 0; i < this.cartItems.length; i++) {
+			if (this.cartItems[i].id == id) {
+				this.cartItems[i].quantity--;
+				break;
+			}
+		}
+		this.totalAmount = this.calculateTotalAmountForCart();
+		this.loadCart();
+	} 
+
+	successMsg(): void {
+		alert('order placed successfully');
+		window.location.href = '/orderHistory';
+	}
 
 }
