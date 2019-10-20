@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Product } from '../entities/product.entity';
+import { Item } from '../entities/item.entity';
 import { ProductService } from '../services/product.service';
+import { cartItemService } from '../services/cartItem.service';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -11,10 +13,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 export class ProductComponent implements OnInit {
 
-	private products: Product[];
+	private products: Product[] = [];
+	private cartItems: Array<Item> = [];
+
 
 	constructor(
-		private productService: ProductService
+		private productService: ProductService,
+		private cartItemService: cartItemService
 	) { }
 
 	ngOnInit() {
@@ -22,5 +27,7 @@ export class ProductComponent implements OnInit {
 		console.log("Product Data");
 	}
 
-
+	addItemToCart(product): void {
+		this.cartItemService.setCartItems(product);
+	}
 }
