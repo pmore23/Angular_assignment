@@ -10,6 +10,7 @@ import { cartItemService } from './services/cartItem.service';
 import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
+import { StorageServiceModule} from 'angular-webstorage-service';
 import { HeaderComponent } from './header/header.component';
 import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
@@ -26,7 +27,8 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
     BrowserModule,
     routing,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    StorageServiceModule
   ],
   providers: [
     ProductService,
