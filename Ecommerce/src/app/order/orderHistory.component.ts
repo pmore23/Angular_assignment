@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-import { Product } from '../entities/product.entity';
-import { Item } from '../entities/item.entity';
-import { ProductService } from '../services/product.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
 	templateUrl: 'order.component.html'
@@ -11,8 +7,18 @@ import { ProductService } from '../services/product.service';
 
 export class OrderHistoryComponent implements OnInit {
 
-	ngOnInit() {
-		console.log("in order history component");
-	}
+	private orderDetailsHistory: any = [];
+	private noOrdersMsg: boolean = false;
 
+	constructor(
+		@Inject(LOCAL_STORAGE) private storage: WebStorageService
+	) { }
+
+	ngOnInit() {
+		if(JSON.parse(this.storage.get('orderHistory')) !== null) {
+			this.orderDetailsHistory = JSON.parse(this.storage.get('orderHistory'));
+		} else {
+			this.noOrdersMsg = true;
+		}
+	}
 }

@@ -38,7 +38,9 @@
         margin: 2rem auto;
         // TODO: apply clearfix
         
-    
+        &__font-bold {
+            font-weight: bold;
+        }
         // If want a flexbox grid.
         &.product-grid--flexbox {
             .product-grid__wrapper {

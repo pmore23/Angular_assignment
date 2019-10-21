@@ -14,8 +14,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 export class ProductComponent implements OnInit {
 
 	private products: Product[] = [];
-	private cartItems: Array<Item> = [];
-
 
 	constructor(
 		private productService: ProductService,
