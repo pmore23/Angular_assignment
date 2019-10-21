@@ -5,7 +5,7 @@ import { OrderHistoryComponent } from './order/orderHistory.component';
 
 
 const routes: Routes = [
-	{ path: '', component: ProductComponent },
+	{ path: '', component: ProductComponent, pathMatch: 'full' },
 	{ path: 'products', component: ProductComponent },
 	{ path: 'cart', component: CartComponent },
 	{ path: 'orderHistory', component: OrderHistoryComponent },
