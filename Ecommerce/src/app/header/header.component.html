@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <div fxHide.gt-xs>
+      <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div fxHide.xs>
+        <a routerLink="/home"><img src="/assets/cart.png" alt="logo" class="logo-img">
+          <span class="app-name">ShopCart</span></a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+            <li>
+                <a [routerLink]="['/products']">Products</a>
+            </li>
+            <li>
+                <a [routerLink]="['/cart']">Shopping Cart</a>
+            </li>
+            <li>
+                <a [routerLink]="['/orderHistory']">Order History</a>
+            </li>
+        </ul>
+    </div>
+  </mat-toolbar>

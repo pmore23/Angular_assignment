@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
+      <span class="nav-caption">Home</span>
+  </a>
+  <a mat-list-item [routerLink]="['/products']" (click)="onSidenavClose()">
+      <span class="nav-caption">Products</span> 
+  </a>
+  <a mat-list-item [routerLink]="['/cart']" (click)="onSidenavClose()">
+      <span class="nav-caption">Shopping Cart</span>
+  </a>
+  <a mat-list-item [routerLink]="['/orderHistory']" (click)="onSidenavClose()">
+    <span class="nav-caption">Order History</span>
+</a>
+</mat-nav-list>

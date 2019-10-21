@@ -12,7 +12,7 @@ import {
   MatTableModule,
   MatDialogModule,
   MatInputModule,
-  MatSelectModule,
+  MatSelectModule
 } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 @NgModule({
