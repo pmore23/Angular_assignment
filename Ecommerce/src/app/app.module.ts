@@ -11,15 +11,17 @@ import { routing } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import { StorageServiceModule} from 'angular-webstorage-service';
-
+import { HeaderComponent } from './header/header.component';
+import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CartComponent,
-    ProductComponent,
-    OrderHistoryComponent
-
+    ProductComponent, 
+    OrderHistoryComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
