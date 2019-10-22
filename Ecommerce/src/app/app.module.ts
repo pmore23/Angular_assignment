@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { AppInMemoryApiService } from './in-memory-api/app-in-memory-api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
@@ -28,7 +31,9 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
     routing,
     BrowserAnimationsModule,
     MaterialModule,
-    StorageServiceModule
+    StorageServiceModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(AppInMemoryApiService)
   ],
   providers: [
     ProductService,

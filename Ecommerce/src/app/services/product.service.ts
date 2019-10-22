@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 
 import { Product } from '../entities/product.entity';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
-
+    private productsURL = 'api/products';
     private products: Product[];
 
-    constructor() {
-        this.products = [
-            { id: 'p01', name: 'A2042-01 Analog', price: 100, product_image: 'assets/images/product/1.jpeg' },
-            { id: 'p02', name: 'A2042-02 Analog', price: 200, product_image: 'assets/images/product/2.jpeg' },
-            { id: 'p03', name: 'A2042-03 Analog', price: 300, product_image: 'assets/images/product/3.jpeg' },
-            { id: 'p04', name: 'A2042-04 Analog', price: 100, product_image: 'assets/images/product/1.jpeg' },
-            { id: 'p05', name: 'A2042-05 Analog', price: 200, product_image: 'assets/images/product/2.jpeg' },
-            { id: 'p06', name: 'A2042-06 Analog', price: 300, product_image: 'assets/images/product/3.jpeg' }
-        ];
-    }
+    constructor(private http: HttpClient) {}
 
-    findAll(): Product[] {
-        return this.products;
+    findAll(): Observable<Product[]> {
+    // return this.products;
+    return this.http.get<Product[]>(this.productsURL)
+      .pipe(
+        tap(_ => console.log('fetched products')),
+        catchError(this.handleError<Product[]>('findAll', []))
+      );
     }
 
     find(id: string): Product {
@@ -27,12 +27,21 @@ export class ProductService {
     }
 
     private getSelectedIndex(id: string) {
-        for (var i = 0; i < this.products.length; i++) {
-            if (this.products[i].id == id) {
+        for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === id) {
                 return i;
             }
         }
         return -1;
     }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      return of(result as T);
+    };
+  }
 
 }
