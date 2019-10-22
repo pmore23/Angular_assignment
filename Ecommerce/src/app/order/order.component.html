@@ -1,25 +1,24 @@
-<div class="wrapper">
-    <div class="content">
-        <h2>Order Details</h2>
-        <!-- content here -->
-        <div class="product-grid product-grid--flexbox">
-            <div class="product-grid-cart__wrapper">
-                <!-- Product list start here -->
-                <mat-card *ngFor="let order of orderDetailsHistory" class = "product-tile">
-                    <mat-card-title>Order Number : {{order.orderNumber}}</mat-card-title>
-                    <mat-card *ngFor="let orderDetail of order.orderDetails" class = "product-tile">
-                        <img mat-card-image src="{{orderDetail.product_image}}" alt="Product Image" class="product-grid__img" />
-                        <mat-card-subtitle class="product-grid__font-bold">{{orderDetail.price * orderDetail.quantity | currency:'INR':true}}</mat-card-subtitle>
-                        <mat-card-subtitle class="product-grid__font-bold">Qty : <span class="product-grid__quantity">{{orderDetail.quantity}}</span></mat-card-subtitle>
-                    </mat-card>
-                    <mat-card-subtitle><h3 class="product-grid__font-bold">Price Details : {{order.totalAmount | currency:'INR':true}}</h3></mat-card-subtitle>
-                    
-                </mat-card>
-  
-            </div>		
-        </div>
-        <div *ngIf="noOrdersMsg"> <!-- when there are no orders -->
-            <h2>Please place some order to see order details!!</h2>
-        </div>
+
+<div class="content">
+    <h2>Order Details</h2>
+    <!-- content here -->
+    <div class="row">
+            <!-- Product list start here -->
+        
+            <mat-card class="col-xs-12" *ngFor="let order of orderDetailsHistory">
+                <mat-card-title class="">Order Number : {{order.orderNumber}}</mat-card-title>
+                <div *ngFor="let orderDetail of order.orderDetails" class="col-sm-3 col-xs-12">
+                    <img src="{{orderDetail.product_image}}" alt="Product Image" class="product-grid__img" />
+                    <mat-card-subtitle class="product-grid__font-bold">Qty : <span class="product-grid__quantity">{{orderDetail.quantity}}</span></mat-card-subtitle>
+                    <mat-card-subtitle class="product-grid__font-bold">Rs. {{orderDetail.price * orderDetail.quantity | currency:'INR':true}}</mat-card-subtitle>
+                </div>
+                <mat-card-subtitle><h3 class="product-grid__font-bold col-xs-12">Total Price : Rs. {{order.totalAmount | currency:'INR':true}}</h3></mat-card-subtitle>
+            </mat-card>
+        
+        <div class="col-xs-12">
+            <div *ngIf="noOrdersMsg"> <!-- when there are no orders -->
+                <h2>Please place some order to see order details!!</h2>
+            </div>
+        </div>	
     </div>
 </div>
