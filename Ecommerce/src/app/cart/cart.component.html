@@ -1,31 +1,31 @@
-<div class="wrapper">
-    <div class="content">
-        <h2 *ngIf="totalItems == 1">My Shopping Cart ({{totalItems}} item)</h2>
-        <h2 *ngIf="totalItems !== 1">My Shopping Cart ({{totalItems}} items)</h2>
-        <!-- content here -->
-        <div class="product-grid product-grid--flexbox">
-            <div class="product-grid-cart__wrapper">
-                <!-- Product list start here -->
-                <mat-card *ngFor="let item of cartItems" class = "product-tile">
+
+<div class="content">
+    <h2 *ngIf="totalItems == 1">My Shopping Cart ({{totalItems}} item)</h2>
+    <h2 *ngIf="totalItems !== 1">My Shopping Cart ({{totalItems}} items)</h2>
+    <div class="row">
+        <div class="form-group col-md-3 col-sm-6 col-xs-12" *ngFor="let item of cartItems">
+            <!-- Product list start here -->
+            <mat-card>
                     <mat-card-title>{{item.name}}</mat-card-title>
-                    <img mat-card-image src="{{item.product_image}}" alt="Product Image" class="product-grid__img" />
-                    <mat-card-subtitle class="product-grid__font-bold">{{item.price * item.quantity | currency:'INR':true}}</mat-card-subtitle>
+                    <img src="{{item.product_image}}" alt="Product Image" class="product-grid__img" />
                     <mat-card-subtitle class="product-grid__font-bold">Qty : <span class="product-grid__quantity">{{item.quantity}}</span></mat-card-subtitle>
                     <mat-card-actions>
                         <span class="product-grid__btn product-grid__cart-component-btn" (click)="increaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>+</span>
                         <span class="product-grid__btn product-grid__cart-component-btn" (click)="decreaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>-</span>
                     </mat-card-actions>
+                    <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity | currency:'INR':true}}</mat-card-subtitle>
                     <mat-card-actions>
-                            <span class="product-grid__btn product-grid__cart-component-btn" (click)="remove(item.id)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
+                        <span class="product-grid__btn product-grid__cart-component-btn" (click)="remove(item.id)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
                     </mat-card-actions>
-                </mat-card>
-                <div *ngIf="!emptyCartErrorMsg">
-                <mat-card-subtitle><h3 class="product-grid__font-bold">Price Details : {{totalAmount | currency:'INR':true}}</h3></mat-card-subtitle>
-                <mat-card-actions>
-                        <span class="product-grid__btn product-grid__cart-component-btn product-grid__font-bold" (click)="orderSubmitted()"><i class="fa fa-cart-arrow-down"></i>Place Order</span>
-                </mat-card-actions>
-                </div>
-            </div>		
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xs-12" *ngIf="!emptyCartErrorMsg">
+            <mat-card-subtitle><h3 class="product-grid__font-bold">Price Details : Rs. {{totalAmount | currency:'INR':true}}</h3></mat-card-subtitle>
+            <mat-card-actions>
+                <span class="product-grid__btn product-grid__cart-component-btn product-grid__font-bold" (click)="orderSubmitted()"><i class="fa fa-cart-arrow-down"></i>Place Order</span>
+            </mat-card-actions>
         </div>
         <div *ngIf="emptyCartErrorMsg"> <!-- when there are no items in the cart -->
             <h2>Please go to products to add items in the shopping cart!!</h2>
