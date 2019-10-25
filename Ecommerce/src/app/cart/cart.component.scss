@@ -1,12 +1,1 @@
-// If want a flexbox grid.
-.product-grid--flexbox {
-    .product-grid-cart__wrapper {
-        display: grid;
-    }
-}
 
-.product-grid__cart-component-btn {
-    color: #fff !important;
-    background: #42A5F5 !important;
-    &:hover { background: lighten(#42A5F5, 10%) !important; }
-}

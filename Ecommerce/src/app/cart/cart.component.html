@@ -7,24 +7,25 @@
             <!-- Product list start here -->
             <mat-card>
                     <mat-card-title>{{item.name}}</mat-card-title>
-                    <img src="{{item.product_image}}" alt="Product Image" class="product-grid__img" />
+                    <img src="{{item.product_image}}" alt="Product Image" class="product-grid__img img-responsive" />
                     <mat-card-subtitle class="product-grid__font-bold">Qty : <span class="product-grid__quantity">{{item.quantity}}</span></mat-card-subtitle>
                     <mat-card-actions>
-                        <span class="product-grid__btn product-grid__cart-component-btn" (click)="increaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>+</span>
-                        <span class="product-grid__btn product-grid__cart-component-btn" (click)="decreaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>-</span>
+                        <span class="product-grid__btn product-grid__add-to-cart" (click)="decreaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>-</span>
+                        <span class="product-grid__btn product-grid__add-to-cart" (click)="increaseQuantity(item.id)"><i class="fa fa-cart-arrow-down"></i>+</span>
                     </mat-card-actions>
-                    <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity | currency:'INR':true}}</mat-card-subtitle>
+                    <!-- <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity | currency:'INR':true}}</mat-card-subtitle> //Pipe symbol not working as expected -->
+                    <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity}}</mat-card-subtitle>  
                     <mat-card-actions>
-                        <span class="product-grid__btn product-grid__cart-component-btn" (click)="remove(item.id)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
+                        <span class="product-grid__btn product-grid__add-to-cart" (click)="remove(item.id)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
                     </mat-card-actions>
             </mat-card>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6 col-xs-12" *ngIf="!emptyCartErrorMsg">
-            <mat-card-subtitle><h3 class="product-grid__font-bold">Price Details : Rs. {{totalAmount | currency:'INR':true}}</h3></mat-card-subtitle>
+            <mat-card-subtitle><h3 class="product-grid__font-bold">Price Details : Rs. {{totalAmount}}</h3></mat-card-subtitle>
             <mat-card-actions>
-                <span class="product-grid__btn product-grid__cart-component-btn product-grid__font-bold" (click)="orderSubmitted()"><i class="fa fa-cart-arrow-down"></i>Place Order</span>
+                <span class="product-grid__btn product-grid__add-to-cart product-grid__font-bold" (click)="orderSubmitted()"><i class="fa fa-cart-arrow-down"></i>Place Order</span>
             </mat-card-actions>
         </div>
         <div *ngIf="emptyCartErrorMsg"> <!-- when there are no items in the cart -->

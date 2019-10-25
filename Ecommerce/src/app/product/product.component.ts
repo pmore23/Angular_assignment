@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
-	templateUrl: 'index.component.html'
+	templateUrl: 'product.component.html'
 })
 export class ProductComponent implements OnInit {
 	private products: Product[] = [];
