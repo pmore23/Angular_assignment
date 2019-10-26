@@ -9,7 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class ProductService {
     private productsURL = 'api/products';
-    private products: Product[];
+    private products: Product[] = [];
 
     constructor(private http: HttpClient) {}
 
