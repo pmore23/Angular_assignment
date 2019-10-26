@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Product } from '../entities/product.entity';
 import { Item } from '../entities/item.entity';
@@ -12,6 +12,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 })
 export class ProductComponent implements OnInit {
 	private products: Product[] = [];
+	private productCount: number = 0;
+	@Output() productCntEmitter: EventEmitter<number> = new EventEmitter();
+
 	constructor(
 		private productService: ProductService,
 		private cartItemService: cartItemService
@@ -26,6 +29,8 @@ export class ProductComponent implements OnInit {
 
 	addItemToCart(product): void {
 		this.cartItemService.setCartItems(product);
+		this.productCount = this.cartItemService.getCartItems().length;
+		this.productCntEmitter.emit(this.productCount);
 	}
 
 	getProducts(): void {
