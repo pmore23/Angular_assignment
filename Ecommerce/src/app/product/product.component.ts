@@ -28,6 +28,12 @@ export class ProductComponent implements OnInit {
 	}
 
 	addItemToCart(product): void {
+		for(let i = 0; i < this.products.length; i++){
+			if(this.products[i].id == product.id) {
+				this.products[i]['btnClickedFlag'] = true;
+			}
+		}
+		product.btnClickedFlag = true;
 		this.cartItemService.setCartItems(product);
 		this.productCount = this.cartItemService.getCartItems().length;
 		this.productCntEmitter.emit(this.productCount);

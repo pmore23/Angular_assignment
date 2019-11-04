@@ -1,17 +1,27 @@
 <div class="form-group col col-md-3 col-sm-6 col-xs-12" *ngFor="let product of products">
     <!-- Product list start here -->
     <mat-card>
+            
             <mat-card-title>{{product.name}}</mat-card-title>
             <div class="col-xs-12">
                 <img src="{{product.product_image}}" alt="Product Imgage" class="product-grid__img img-responsive" />
             </div>
             <mat-card-subtitle>Rs. {{product.price}}</mat-card-subtitle>
-            <mat-card-actions>
+            <mat-card-actions *ngIf="!product.btnClickedFlag">
                 <a (click)="addItemToCart(product)">
                     <span class="product-grid__btn product-grid__add-to-cart">
                         <i class="fa fa-cart-arrow-down"></i> Add to cart
                     </span>
                 </a>
             </mat-card-actions>
+            <mat-card-actions *ngIf="product.btnClickedFlag">
+                    <a [routerLink]="['/cart']">
+                        <span class="product-grid__btn product-grid__add-to-cart">
+                            <i class="fa fa-cart-arrow-down"></i>Go to cart
+                        </span>
+                    </a>
+                    <span>Product added successfully in cart</span>
+            </mat-card-actions>
+            
     </mat-card>
-</div>		
+</div>
