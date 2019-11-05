@@ -3,9 +3,9 @@
     <mat-card>
             <mat-card-title>{{product.name}}</mat-card-title>
             <div class="col-xs-12">
-                <img src="{{product.product_image}}" alt="Product Imgage" class="col-xs-12 product-grid__img" />
+                <img src="{{product.product_image}}" alt="Product Imgage" class="product-grid__img img-responsive" />
             </div>
-            <mat-card-subtitle>{{product.price | currency:'INR':true}}</mat-card-subtitle>
+            <mat-card-subtitle>Rs. {{product.price}}</mat-card-subtitle>
             <mat-card-actions>
                 <a (click)="addItemToCart(product)">
                     <span class="product-grid__btn product-grid__add-to-cart">

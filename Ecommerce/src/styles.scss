@@ -49,7 +49,9 @@
         margin: 2rem auto;
         // TODO: apply clearfix
         
-    
+        &__font-bold {
+            font-weight: bold;
+        }
         // If want a flexbox grid.
         &.product-grid--flexbox {
             .product-grid__wrapper {
@@ -193,9 +195,9 @@
         
         &__add-to-cart {
             color: #fff;
-            background: $primary;
+            background: $secondary;
             
-            &:hover { background: lighten($primary, 10%); }
+            &:hover { background: lighten($secondary, 10%); }
         }
         
         &__view {

@@ -3,11 +3,11 @@
         <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
       </mat-sidenav>
 
-<app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+<app-header (sidenavToggle)="sidenav.toggle()" [productCount]="cartItemCount"></app-header>
 <main>
   <div class="container">
     <div class="row justify-content-md-center">
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
     </div>
   </div>
 </main>
