@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-    <div fxHide.gt-xs>
+    <div fxHide.gt-xs class="mob-nav">
       <button mat-icon-button (click)="onToggleSidenav()">
           <mat-icon>menu</mat-icon>
       </button>
     </div>
     <div fxHide.xs>
-        <a routerLink="/home"><img src="/assets/cart.png" alt="logo" class="logo-img">
+        <a routerLink="/home">
           <span class="app-name">ShopCart</span></a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
@@ -21,4 +21,13 @@
             </li>
         </ul>
     </div>
+    <div class="cart-counter">
+        <div class='box'>
+            <img src="/assets/cart.png" alt="logo" class="logo-img">
+            <div id='noti-count'>
+                <div>2</div>
+            </div>
+        </div>
+    </div>
+    
   </mat-toolbar>
