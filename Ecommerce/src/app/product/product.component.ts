@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Product } from '../entities/product.entity';
 import { Item } from '../entities/item.entity';
 import { ProductService } from '../services/product.service';
 import { cartItemService } from '../services/cartItem.service';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
-	templateUrl: 'index.component.html'
+	templateUrl: 'product.component.html'
 })
-
 export class ProductComponent implements OnInit {
-
 	private products: Product[] = [];
-	private cartItems: Array<Item> = [];
-
+	private productCount: number = 0;
+	@Output() productCntEmitter: EventEmitter<number> = new EventEmitter();
 
 	constructor(
 		private productService: ProductService,
@@ -23,11 +21,19 @@ export class ProductComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.products = this.productService.findAll();
-		console.log("Product Data");
+		this.getProducts();
+		// tslint:disable-next-line: indent
+		// this.products = this.productService.findAll();
+		// console.log("Product Data");
 	}
 
 	addItemToCart(product): void {
 		this.cartItemService.setCartItems(product);
+		this.productCount = this.cartItemService.getCartItems().length;
+		this.productCntEmitter.emit(this.productCount);
 	}
+
+	getProducts(): void {
+		this.productService.findAll().subscribe(products => this.products = products);
+	} 
 }
