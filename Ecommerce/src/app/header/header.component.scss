@@ -1,3 +1,40 @@
+/* Cart counter CSS*/
+.mob-nav{
+    position: relative;
+    float: left;
+    width: 100%;
+}
+.cart-counter{
+    position: relative; 
+    float: right;
+    padding-left: 45px;
+    padding-right: 20px;
+    .box {
+        width: 40px;
+        height: 26px;
+        border: #aaa;
+        border-radius: 10px;
+        margin: 20px;
+        position: relative;
+        #noti-count {
+            position:absolute;
+            top:-14px;
+            right:-17px;
+            background-color:#27275a;
+            color:#fff;
+            padding:5px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            width:30px;
+            height:30px;
+            text-align:center;
+            div {
+                margin-top:-6px;
+              }
+          }
+      }
+}
 a {
     text-decoration: none;
     color: white;
