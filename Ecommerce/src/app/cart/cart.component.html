@@ -1,7 +1,9 @@
 
 <div class="content">
-    <h2 *ngIf="totalItems == 1">My Shopping Cart ({{totalItems}} item)</h2>
-    <h2 *ngIf="totalItems !== 1">My Shopping Cart ({{totalItems}} items)</h2>
+    <div class="row">
+        <h2 *ngIf="totalItems == 1">My Shopping Cart ({{totalItems}} item)</h2>
+        <h2 *ngIf="totalItems !== 1">My Shopping Cart ({{totalItems}} items)</h2>
+    </div>
     <div class="row">
         <div class="form-group col-md-3 col-sm-6 col-xs-12" *ngFor="let item of cartItems">
             <!-- Product list start here -->

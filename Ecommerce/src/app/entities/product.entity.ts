@@ -4,5 +4,5 @@ export class Product {
     name: string;
     price: number;
     product_image: string;
-   
+    btnClickedFlag: boolean;
 }
