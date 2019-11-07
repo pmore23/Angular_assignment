@@ -14,7 +14,7 @@ import { ProductService } from '../services/product.service';
 
 export class CartComponent implements OnInit {
 
-	private cartItems: Item[] = [];
+	private cartItems: any = [];
 	private totalItems: number = 0;
 	private totalAmount: number = 0;
 	private emptyCartErrorMsg: boolean = false;
