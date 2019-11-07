@@ -5,6 +5,7 @@ import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 import { Product } from '../entities/product.entity';
 import { Item } from '../entities/item.entity';
 import { cartItemService } from '../services/cartItem.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
 	templateUrl: 'cart.component.html',
@@ -13,7 +14,7 @@ import { cartItemService } from '../services/cartItem.service';
 
 export class CartComponent implements OnInit {
 
-	private cartItems: any = [];
+	private cartItems: Item[] = [];
 	private totalItems: number = 0;
 	private totalAmount: number = 0;
 	private emptyCartErrorMsg: boolean = false;
@@ -22,6 +23,7 @@ export class CartComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private cartItemService: cartItemService,
+		private productService: ProductService,
 		@Inject(LOCAL_STORAGE) private storage: WebStorageService
 	) { }
 
@@ -75,6 +77,10 @@ export class CartComponent implements OnInit {
 	} 
 
 	orderSubmitted(): void {
+		for( let i = 0; i < this.cartItems.length; i++){
+			this.cartItems[i].btnClickedFlag = false;
+			this.productService.setBtnClickedFlagfn(this.cartItems[i]);
+		}
 		if (localStorage.getItem('orderHistory') == null) { 
 			let orderDetailsArr: any = [];
 			let orderDetailsNumber: number = 0;
@@ -98,8 +104,6 @@ export class CartComponent implements OnInit {
 			this.storage.set('orderHistory', JSON.stringify(orderDetailsArr));
 		}
 		this.cartItemService.emptyCart();
-		this.totalItems = 0;
-		this.cartItems.length = 0;
 		alert('order placed successfully with Order Number : ' + JSON.parse(this.storage.get('orderHistory')).length);
 		//this.router.navigate(['/orderHistory'], {queryParams:{cartItemCount:this.cartItems.length} });
 		this.router.navigate(['/orderHistory', this.cartItems.length ]);

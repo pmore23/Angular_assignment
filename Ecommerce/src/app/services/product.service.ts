@@ -44,4 +44,16 @@ export class ProductService {
     };
   }
 
+  setBtnClickedFlagfn(product): void {
+		this.updateProduct(product).subscribe(param => {
+			console.log('param : ', param);
+		}, error => (console.log('error in saving')));
+  }
+  
+  updateProduct(product: Product) {
+    if (product.id) {
+      return this.http.put<Product>(this.productsURL, product).pipe(catchError(this.handleError));
+    }
+  }
+
 }

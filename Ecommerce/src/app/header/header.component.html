@@ -4,12 +4,11 @@
           <mat-icon>menu</mat-icon>
       </button>
     </div>
-    <div fxHide.xs>
+    <div fxHide.xs style="margin-right:15px;">
         <a routerLink="/home">
-
-          <span class="app-name">ShopCart</span></a>
+          <span class="app-name">Home</span></a>
     </div>
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
                 <a [routerLink]="['/products']">Products</a>
@@ -25,8 +24,8 @@
     <div class="cart-counter">
         <div class='box'>
             <img src="/assets/cart.png" alt="logo" class="logo-img">
-            <div id='noti-count'>
-                <div><span *ngIf="productCount != 0">{{productCount}}</span></div>
+            <div id='noti-count' *ngIf="productCount != 0">
+                <div><span>{{productCount}}</span></div>
             </div>
         </div>
     </div>

@@ -26,18 +26,15 @@ export class ProductComponent implements OnInit {
 		// this.products = this.productService.findAll();
 		// console.log("Product Data");
 	}
-
 	addItemToCart(product): void {
-		for(let i = 0; i < this.products.length; i++){
-			if(this.products[i].id == product.id) {
-				this.products[i]['btnClickedFlag'] = true;
-			}
-		}
 		product.btnClickedFlag = true;
+		this.productService.setBtnClickedFlagfn(product);
 		this.cartItemService.setCartItems(product);
 		this.productCount = this.cartItemService.getCartItems().length;
 		this.productCntEmitter.emit(this.productCount);
 	}
+
+	
 
 	getProducts(): void {
 		this.productService.findAll().subscribe(products => this.products = products);
