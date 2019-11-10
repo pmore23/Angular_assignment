@@ -5,4 +5,5 @@ export class Product {
     price: number;
     product_image: string;
     btnClickedFlag: boolean;
+    likeflag: boolean;
 }

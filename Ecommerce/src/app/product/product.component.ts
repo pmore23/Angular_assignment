@@ -33,7 +33,10 @@ export class ProductComponent implements OnInit {
 		this.productCount = this.cartItemService.getCartItems().length;
 		this.productCntEmitter.emit(this.productCount);
 	}
-
+	like(product): void {
+		product.likeflag = !product.likeflag;
+		this.productService.setLikeFlagfn(product);
+	}
 	
 
 	getProducts(): void {

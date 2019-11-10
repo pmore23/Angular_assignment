@@ -2,12 +2,25 @@
     <!-- Product list start here -->
     <mat-card>
             
-            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-title>{{product.name}}
+                <a (click)="like(product)" style="float:right">
+                    <span class="btn btn-default btn-sm" *ngIf="product.likeflag">
+                        <i class="fa fa-cart-arrow-down glyphicon glyphicon-thumbs-up"></i> 
+                    </span>
+                </a>
+                <a (click)="like(product)" style="float:right">
+                    <span class="btn btn-danger btn-sm" *ngIf="!product.likeflag">
+                        <i class="fa fa-cart-arrow-down glyphicon glyphicon-heart"></i> 
+                    </span>
+                </a>
+            </mat-card-title>
             <div class="col-xs-12">
                 <img src="{{product.product_image}}" alt="Product Imgage" class="product-grid__img img-responsive" />
+
             </div>
             <mat-card-subtitle>Rs. {{product.price}}</mat-card-subtitle>
-            <mat-card-actions *ngIf="!product.btnClickedFlag">
+            
+            <mat-card-actions  *ngIf="!product.btnClickedFlag">
                 <a (click)="addItemToCart(product)">
                     <span class="product-grid__btn product-grid__add-to-cart">
                         <i class="fa fa-cart-arrow-down"></i> Add to cart
@@ -22,6 +35,8 @@
                     </a>
                     <span>Added in cart</span>
             </mat-card-actions>
-            
+            <mat-card-actions>
+
+            </mat-card-actions>
     </mat-card>
 </div>
