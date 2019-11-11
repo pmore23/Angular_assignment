@@ -18,7 +18,7 @@
                     <!-- <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity | currency:'INR':true}}</mat-card-subtitle> //Pipe symbol not working as expected -->
                     <mat-card-subtitle class="product-grid__font-bold">Rs. {{item.price * item.quantity}}</mat-card-subtitle>  
                     <mat-card-actions>
-                        <span class="product-grid__btn product-grid__add-to-cart" (click)="remove(item.id)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
+                        <span class="product-grid__btn product-grid__add-to-cart" (click)="remove(item)"><i class="fa fa-cart-arrow-down"></i>Remove</span>
                     </mat-card-actions>
             </mat-card>
         </div>

@@ -6,16 +6,16 @@ import { Item } from '../entities/item.entity';
 export class cartItemService {
 
     private cartItems: any = [];
-
+    
     getCartItems() {
         return this.cartItems;
     }
 
-    setCartItems(Item) {
+    setCartItems(Item: Item) {
         if (this.cartItems.length !== 0) {
             let index: number = -1;
             for (var i = 0; i < this.cartItems.length; i++) {
-                if(this.cartItems[i].id === Item.id) {
+                if(this.cartItems[i].id === Item['id']) {
                     index = i;
                     break;
                 }
@@ -32,10 +32,10 @@ export class cartItemService {
         }   
     }
 
-    removeCartItem(id: string) {
+    removeCartItem(item: Item) {
         if(this.cartItems.length > 0) {
 			for (var i = 0; i < this.cartItems.length; i++) {
-				if (this.cartItems[i].id == id) {
+				if (this.cartItems[i].id == item['id']) {
 					this.cartItems.splice(i, 1);
 					break;
 				}
