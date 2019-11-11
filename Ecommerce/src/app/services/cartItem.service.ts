@@ -11,24 +11,24 @@ export class cartItemService {
         return this.cartItems;
     }
 
-    setCartItems(Item: Item) {
+    setCartItems(item: Item) {
         if (this.cartItems.length !== 0) {
             let index: number = -1;
             for (var i = 0; i < this.cartItems.length; i++) {
-                if(this.cartItems[i].id === Item['id']) {
+                if(this.cartItems[i].id === item['id']) {
                     index = i;
                     break;
                 }
             }
             if (index == -1) {
-                Item.quantity = 1;
-                this.cartItems.push(Item);
+                item.quantity = 1;
+                this.cartItems.push(item);
             } else {
-                Item.quantity++;
+                item.quantity++;
             }
         } else {
-            Item.quantity = 1;
-            this.cartItems.push(Item);
+            item.quantity = 1;
+            this.cartItems.push(item);
         }   
     }
 
