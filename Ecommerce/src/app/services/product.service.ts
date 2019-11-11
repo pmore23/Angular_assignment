@@ -49,6 +49,12 @@ export class ProductService {
 			console.log('param : ', param);
 		}, error => (console.log('error in saving')));
   }
+
+  setLikeFlagfn(product): void {
+		this.updateProduct(product).subscribe(param => {
+			console.log('param : ', param);
+		}, error => (console.log('error in saving')));
+  }
   
   updateProduct(product: Product) {
     if (product.id) {
