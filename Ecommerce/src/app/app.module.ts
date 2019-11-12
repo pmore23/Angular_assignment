@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AppInMemoryApiService } from './in-memory-api/app-in-memory-api.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -39,6 +39,7 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
     ProductService,
     cartItemService
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 

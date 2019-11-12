@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
 		// this.products = this.productService.findAll();
 		// console.log("Product Data");
 	}
+
 	addItemToCart(product): void {
 		product.btnClickedFlag = true;
 		this.productService.setBtnClickedFlagfn(product);
@@ -33,11 +34,11 @@ export class ProductComponent implements OnInit {
 		this.productCount = this.cartItemService.getCartItems().length;
 		this.productCntEmitter.emit(this.productCount);
 	}
+
 	like(product): void {
 		product.likeflag = !product.likeflag;
-		this.productService.setLikeFlagfn(product);
+		this.productService.setBtnClickedFlagfn(product);
 	}
-	
 
 	getProducts(): void {
 		this.productService.findAll().subscribe(products => this.products = products);

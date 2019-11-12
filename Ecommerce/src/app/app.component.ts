@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import { Routes, RouterModule, Router } from '@angular/router';
 //import { CartComponent } from './product/cart.component';
 
 @Component({
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
   //@ViewChild(CartComponent, {static:false}) cartCompRef: CartComponent; 
 
   constructor(
-    @Inject(LOCAL_STORAGE) private storage: WebStorageService
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+    private router: Router
   ) { }
   ngOnInit() {
     this.storage.remove('orderHistory');
@@ -27,6 +29,10 @@ export class AppComponent implements OnInit {
     componentReference.productCntEmitter.subscribe((count) => {
       this.cartItemCount = count;
     });
+  }
+
+  navigateToProductsComp() {
+    this.router.navigate(['/products']);
   }
 
  // ngAfterViewInit() {

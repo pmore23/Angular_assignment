@@ -6,36 +6,36 @@ import { Item } from '../entities/item.entity';
 export class cartItemService {
 
     private cartItems: any = [];
-
+    
     getCartItems() {
         return this.cartItems;
     }
 
-    setCartItems(Item) {
+    setCartItems(item: Item) {
         if (this.cartItems.length !== 0) {
             let index: number = -1;
             for (var i = 0; i < this.cartItems.length; i++) {
-                if(this.cartItems[i].id === Item.id) {
+                if(this.cartItems[i].id === item['id']) {
                     index = i;
                     break;
                 }
             }
             if (index == -1) {
-                Item.quantity = 1;
-                this.cartItems.push(Item);
+                item.quantity = 1;
+                this.cartItems.push(item);
             } else {
-                Item.quantity++;
+                item.quantity++;
             }
         } else {
-            Item.quantity = 1;
-            this.cartItems.push(Item);
+            item.quantity = 1;
+            this.cartItems.push(item);
         }   
     }
 
-    removeCartItem(id: string) {
+    removeCartItem(item: Item) {
         if(this.cartItems.length > 0) {
 			for (var i = 0; i < this.cartItems.length; i++) {
-				if (this.cartItems[i].id == id) {
+				if (this.cartItems[i].id == item['id']) {
 					this.cartItems.splice(i, 1);
 					break;
 				}

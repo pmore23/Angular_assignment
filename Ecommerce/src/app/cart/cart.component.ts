@@ -36,6 +36,8 @@ export class CartComponent implements OnInit {
 		if(this.cartItems.length !== 0) {
 			for (var i = 0; i < this.cartItems.length; i++) {
 				if(this.cartItems[i].quantity === 0) {
+					this.cartItems[i].btnClickedFlag = false;
+					this.productService.setBtnClickedFlagfn(this.cartItems[i]);
 					this.cartItems.splice(i, 1);
 					if(this.cartItems.length == 0) {
 						this.emptyCartErrorMsg = true;
@@ -58,8 +60,10 @@ export class CartComponent implements OnInit {
 		return cartTotalAmount;
 	}
 
-	remove(id: string): void {
-		this.cartItemService.removeCartItem(id);
+	remove(item: Item): void {
+		item['btnClickedFlag'] = false;
+		this.productService.setBtnClickedFlagfn(item);
+		this.cartItemService.removeCartItem(item);
 		if(this.cartItems.length == 0) {
 			this.emptyCartErrorMsg = true;
 		}
